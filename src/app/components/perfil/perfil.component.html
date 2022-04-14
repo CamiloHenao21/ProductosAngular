@@ -1,0 +1,16 @@
+<form class="form" [formGroup]="form" (ngSubmit)="ingresar()">
+    <div class="login">
+        <div class="margin mb-3">
+            <img class="img" src="../../../assets/img/user.png" alt="Login" style="margin: 10px">
+            <h2>Iniciar Sesion</h2>
+        </div>
+        <div class="margin mb-3">
+            <input formControlName="correo" placeholder="Email" required email name="email" type="email" class="form-control mb-3" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="margin mb-3">
+            <input formControlName="contraseña" placeholder="Password" required minlength="4" name="password" type="password" class="form-control mb-3" id="exampleInputPassword1">
+        </div>
+
+        <button type="submit" class="margin btn btn-primary" [disabled]="form.invalid">Ingresar</button>
+    </div>
+</form>

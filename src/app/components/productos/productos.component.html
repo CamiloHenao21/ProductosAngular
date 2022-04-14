@@ -1,0 +1,53 @@
+<div class="container mt-4" *ngIf="productos.length > 0">
+
+    <div class="card-body">
+        <span class="h3">Lista Productos</span>
+
+        <div class="mt-3">
+            <button style="margin: 10px" class="btn btn-outline-success btn-lg float-right" type="submit" routerLink="/crearproducto">Ingresar Producto</button>
+            <button style="margin: 10px" class="btn btn-outline-success btn-lg float-right" type="submit" routerLink="/home">Cerrar Sesion</button>
+        </div>
+        <br>
+
+        <input type="text" class="forms-control" placeholder="Buscar Nombre" [(ngModel)]="filtro" name="filtro" />
+
+        <table class="table" mat-table matSort>
+            <thead>
+                <tr>
+                    <th scope="row" mat-sort-header="Id">Id</th>
+                    <th scope="col" mat-sort-header="Nombre">Nombre</th>
+                    <th scope="col" mat-sort-header="Caracteristica">Caracteristica</th>
+                    <th scope="col" mat-sort-header="Fecha">Fecha</th>
+                    <th scope="col" mat-sort-header="Correo">Correo</th>
+                    <th scope="col" mat-sort-header="País">País</th>
+                    <th scope="col" mat-sort-header="Precio">Precio</th>
+                    <th scope="col" mat-sort-header="Disponible">Disponible</th>
+                    <th scope="col" mat-sort-header="Vendidas">Vendidas</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col"><i class="fa-solid fa-circle-trash"></i></th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr *ngFor="let producto of productos | filtro : filtro ; let i = index">
+                    <td>{{producto.Id}}</td>
+                    <td>{{producto.Nombre}}</td>
+                    <td>{{producto.Caracteristica}}</td>
+                    <td>{{producto.Fecha}}</td>
+                    <td>{{producto.Correo}}</td>
+                    <td>{{producto.Pais}}</td>
+                    <td>{{producto.Precio | currency:'COP':'symbol-narrow':'.0-0'}}</td>
+                    <td>{{producto.Disponible}}</td>
+                    <td>{{producto.Vendidas}}</td>
+                    <td> <img src="{{producto.Imagen}}" alt="" class="img"></td>
+                    <td>
+                        <i class="fas fa-trash-alt fa-lg text-danger" (click)="eliminarProducto(i)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<h2 *ngIf="productos.length == 0">No hay productos disponibles</h2>
